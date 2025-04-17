@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatura Pública - Receba</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Seletor de tema para alternar entre empresas -->
+        <div class="theme-selector">
+            <button class="theme-btn green active" onclick="setTheme('green')">
+                <div class="theme-icon"><i class="fas fa-leaf"></i></div>
+                EcoFin Soluções
+            </button>
+            <button class="theme-btn blue" onclick="setTheme('blue')">
+                <div class="theme-icon"><i class="fas fa-tint"></i></div>
+                TechPay Financeiro
+            </button>
+            <button class="theme-btn perto" onclick="setTheme('perto')">
+                <div class="theme-icon"><i class="fas fa-wifi"></i></div>
+                Perto Network
+            </button>
+            <button class="theme-btn netiz" onclick="setTheme('netiz')">
+                <div class="theme-icon"><i class="fas fa-globe"></i></div>
+                Netiz
+            </button>
+        </div>
+        
+        <!-- Cabeçalho da Empresa -->
+        <div class="card">
+            <div class="company-header">
+                <div class="company-logo-container">
+                    <img src="https://ecoefin.com.br/assets/img/logo_bottom.png" alt="Logo da Empresa" class="company-logo" id="company-logo">
+                </div>
+                <div class="company-info">
+                    <h1 class="company-name" id="company-name">EcoFin Soluções</h1>
+                    <button class="company-details-toggle" onclick="toggleCompanyDetails()">
+                        <span class="toggle-text">Ver detalhes da empresa</span>
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </button>
+                    <div class="company-details" id="company-details">
+                        <div class="company-detail-item"><i class="fas fa-building"></i> <span id="company-cnpj">45.987.632/0001-19</span></div>
+                        <div class="company-detail-item"><i class="fas fa-envelope"></i> <span id="company-email">financeiro@ecofin.com.br</span></div>
+                        <div class="company-detail-item"><i class="fas fa-phone"></i> <span id="company-phone">(11) 98765-4321</span></div>
+                        <div class="company-detail-item"><i class="fas fa-map-marker-alt"></i> <span id="company-address">Av. Paulista, 1000, Bela Vista</span></div>
+                        <div class="company-detail-item"><i class="fas fa-map"></i> <span id="company-city">CEP: 01310-100 - São Paulo - SP</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barra de Status -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <div class="status-indicator"></div>
+                    <div class="status-text">Aguardando Pagamento</div>
+                </div>
+                <div class="status-right">
+                    <a href="#" class="status-action"><i class="fas fa-exclamation-circle"></i> Reportar problema</a>
+                </div>
+            </div>
+
+            <!-- Conteúdo da Fatura -->
+            <div class="invoice-content">
+                <h2 class="invoice-title">Dados da fatura - <span class="invoice-number">INV2024051</span></h2>
+                
+                <div class="invoice-grid">
+                    <div class="invoice-info-box">
+                        <div class="info-label">Valor total</div>
+                        <div class="info-value">R$ 249,90</div>
+                    </div>
+                    
+                    <div class="invoice-info-box">
+                        <div class="info-label">Data de vencimento</div>
+                        <div class="info-value">15/05/2024</div>
+                        <div class="info-detail">(daqui a 15 dias)</div>
+                    </div>
+                    
+                    <div class="invoice-info-box">
+                        <div class="info-label">Após o vencimento</div>
+                        <div class="info-value">R$ 4,99 de multa</div>
+                        <div class="info-detail">+ 2% de juros ao mês</div>
+                    </div>
+                </div>
+                
+                <div class="description-box">
+                    <h3 class="invoice-title"><i class="fas fa-file-alt"></i> Descrição</h3>
+                    <div class="description-content" id="description-content">
+                        <div class="description-item">
+                            <i class="fas fa-cubes"></i>
+                            <span><strong>Plano:</strong> Premium Business</span>
+                        </div>
+                        <div class="description-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span><strong>Duração:</strong> 6 meses</span>
+                        </div>
+                        <div class="description-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Inclui:</strong> 5 usuários, suporte 24/7, backup na nuvem e recursos avançados</span>
+                        </div>
+                        <div class="description-item notice">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Será enviado para protesto em 15 dias após o vencimento.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seção de Itens da Fatura -->
+                <div class="invoice-items">
+                    <h3 class="invoice-title"><i class="fas fa-list-ul"></i> Itens da fatura</h3>
+                    
+                    <div class="responsive-table-container">
+                        <table class="items-table">
+                            <thead>
+                                <tr>
+                                    <th class="item-column">Item</th>
+                                    <th class="description-column">Descrição</th>
+                                    <th class="quantity-column">Quantidade</th>
+                                    <th class="value-column">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoice-items-body">
+                                <tr>
+                                    <td class="item-column">1</td>
+                                    <td class="description-column">Licença Premium Business</td>
+                                    <td class="quantity-column">1</td>
+                                    <td class="value-column">R$ 199,90</td>
+                                </tr>
+                                <tr>
+                                    <td class="item-column">2</td>
+                                    <td class="description-column">Suporte Técnico Avançado</td>
+                                    <td class="quantity-column">1</td>
+                                    <td class="value-column">R$ 50,00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Versão alternativa como cards para mobile -->
+                    <div class="items-cards">
+                        <div class="item-card" id="item-card-1">
+                            <div class="item-card-header">
+                                <span class="item-number">1</span>
+                                <span class="item-value">R$ 199,90</span>
+                            </div>
+                            <div class="item-card-content">
+                                <div class="item-description">Licença Premium Business</div>
+                                <div class="item-quantity"><span>Quantidade:</span> 1</div>
+                            </div>
+                        </div>
+                        
+                        <div class="item-card" id="item-card-2">
+                            <div class="item-card-header">
+                                <span class="item-number">2</span>
+                                <span class="item-value">R$ 50,00</span>
+                            </div>
+                            <div class="item-card-content">
+                                <div class="item-description">Suporte Técnico Avançado</div>
+                                <div class="item-quantity"><span>Quantidade:</span> 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seção de Pagamento -->
+                <div class="payment-section">
+                    <h3 class="invoice-title"><i class="fas fa-credit-card"></i> Forma de pagamento</h3>
+                    
+                    <div class="payment-tabs">
+                        <div class="payment-tab" onclick="togglePaymentTab('pix')">
+                            <i class="fas fa-qrcode"></i> Pix
+                        </div>
+                        <div class="payment-tab active" onclick="togglePaymentTab('boleto')">
+                            <i class="fas fa-barcode"></i> Boleto
+                        </div>
+                    </div>
+                    
+                    <div id="pix-content" class="payment-tab-content">
+                        <div class="payment-content">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReXB6tvgHUw7BV-VIRDiLRjQDhFepQsGNxWA&s" alt="QR Code" class="qr-code">
+                            
+                            <div class="payment-instructions">
+                                <p>Acesse seu APP de pagamentos e faça a leitura do QR Code ao lado para efetuar o pagamento de forma rápida e segura.</p>
+                                
+                                <h4 class="payment-subtitle"><i class="fas fa-copy"></i> Código Pix copia e cola</h4>
+                                <div class="pix-code" id="pix-code">
+                                    00020101021226800014br.gov.bcb.pix2558pix.example.com/qr/v2/cobv/7ac39ffe-47a8-42de-bf05-d56c66944568520400005303986580400005802BR5925ECOFIN SOLUCOES LTDA6009SAO PAULO62070503***63042AB5
+                                </div>
+                                
+                                <button class="copy-button" onclick="copyToClipboard('pix-code')">
+                                    <i class="fas fa-copy"></i> Copiar código Pix
+                                    <span class="tooltip">Copiado!</span>
+                                </button>
+                                
+                                <div class="security-badge">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>SITE SEGURO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="boleto-content" class="payment-tab-content active">
+                        <div class="payment-box">
+                            <h4 class="payment-subtitle"><i class="fas fa-barcode"></i> Código de barras do boleto</h4>
+                            <div class="boleto-code" id="boleto-code">
+                                23793.38128 60095.953405 67049.780008 7 94500000024990
+                            </div>
+                            
+                            <div class="payment-buttons">
+                                <button class="action-button copy-button boleto-copy-button" onclick="copyToClipboard('boleto-code')">
+                                    <i class="fas fa-copy"></i> Copiar código de barras
+                                    <span class="tooltip">Copiado!</span>
+                                </button>
+                                
+                                <a href="#" class="action-button primary-button">
+                                    <i class="fas fa-file-pdf"></i> Baixar boleto em PDF
+                                </a>
+                                
+                                <button class="action-button secondary-button">
+                                    <i class="fas fa-download"></i> Baixar comprovante
+                                </button>
+                            </div>
+                            
+                            <div class="security-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>SITE SEGURO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dados do Cliente -->
+        <div class="card">
+            <div class="customer-section">
+                <h3 class="invoice-title">
+                    <i class="fas fa-user-tie"></i> Dados do comprador
+                </h3>
+                
+                <div class="customer-cards">
+                    <div class="customer-card">
+                        <div class="customer-card-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="customer-card-content">
+                            <div class="info-label">Nome</div>
+                            <div class="info-value">Empresa Inovadora SA</div>
+                        </div>
+                    </div>
+                    
+                    <div class="customer-card">
+                        <div class="customer-card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="customer-card-content">
+                            <div class="info-label">Email</div>
+                            <div class="info-value customer-email">financeiro@empresainovadora.com.br</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rodapé com informações adicionais -->
+        <div class="footer">
+            <p>Esta fatura é um documento eletrônico válido conforme Art. 175 do regulamento do ICMS.</p>
+            <p>Em caso de dúvidas, entre em contato pelo e-mail: suporte@ecofin.com.br</p>
+            
+            <div class="signature">
+                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=344,fit=crop,q=95/m2Wp3OoZB0S02Ro2/logo1-YanyLGrkgVIQw9NP.png" alt="Receba" id="footer-logo">
+                <span>Powered by Receba</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Função para atualizar a descrição baseado no tema
+        function updateDescription(theme) {
+            const descriptionContent = document.getElementById('description-content');
+            let descriptionItems = [];
+            
+            if (theme === 'perto') {
+                // Descrição da Perto Network
+                descriptionItems = `
+                    <div class="description-item">
+                        <i class="fas fa-network-wired"></i>
+                        <span><strong>Serviço:</strong> Conectividade empresarial</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Contrato:</strong> 12 meses</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Inclui:</strong> Link dedicado, PABX Virtual, suporte técnico 24/7, garantia de SLA</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-wifi"></i>
+                        <span><strong>Tecnologia:</strong> Fibra óptica end-to-end</span>
+                    </div>
+                    <div class="description-item notice">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Será enviado para protesto em 15 dias após o vencimento.</span>
+                    </div>
+                `;
+            } else if (theme === 'blue') {
+                // Descrição da empresa azul
+                descriptionItems = `
+                    <div class="description-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span><strong>Plano:</strong> Business Solutions</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Duração:</strong> 12 meses</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Inclui:</strong> Análise financeira, consultoria empresarial, e suporte personalizado</span>
+                    </div>
+                    <div class="description-item notice">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Será enviado para protesto em 15 dias após o vencimento.</span>
+                    </div>
+                `;
+            } else if (theme === 'netiz') {
+                // Descrição da Netiz
+                descriptionItems = `
+                    <div class="description-item">
+                        <i class="fas fa-wifi"></i>
+                        <span><strong>Plano:</strong> Conectividade Premium</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Contrato:</strong> 12 meses</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Inclui:</strong> Internet fibra óptica, Sky+ TV, suporte técnico especializado</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span><strong>Velocidade:</strong> 500 Mbps download / 250 Mbps upload</span>
+                    </div>
+                    <div class="description-item notice">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Será enviado para protesto em 15 dias após o vencimento.</span>
+                    </div>
+                `;
+            } else {
+                // Descrição da empresa verde (padrão)
+                descriptionItems = `
+                    <div class="description-item">
+                        <i class="fas fa-cubes"></i>
+                        <span><strong>Plano:</strong> Premium Business</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span><strong>Duração:</strong> 6 meses</span>
+                    </div>
+                    <div class="description-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>Inclui:</strong> 5 usuários, suporte 24/7, backup na nuvem e recursos avançados</span>
+                    </div>
+                    <div class="description-item notice">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Será enviado para protesto em 15 dias após o vencimento.</span>
+                    </div>
+                `;
+            }
+            
+            descriptionContent.innerHTML = descriptionItems;
+        }
+        
+        // Função para alternar entre os temas/empresas
+        function setTheme(theme) {
+            const body = document.body;
+            const companyLogo = document.getElementById('company-logo');
+            const companyName = document.getElementById('company-name');
+            const companyCnpj = document.getElementById('company-cnpj');
+            const companyEmail = document.getElementById('company-email');
+            const companyPhone = document.getElementById('company-phone');
+            const companyAddress = document.getElementById('company-address');
+            const companyCity = document.getElementById('company-city');
+            const footerLogo = document.getElementById('footer-logo');
+            const securityBadges = document.querySelectorAll('.security-badge');
+            
+            // Remove todas as classes de tema
+            body.classList.remove('theme-blue');
+            body.classList.remove('theme-perto');
+            body.classList.remove('theme-netiz');
+            
+            // Remove classe 'active' de todos os botões
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (theme === 'blue') {
+                // Adiciona a classe do tema azul
+                body.classList.add('theme-blue');
+                
+                // Atualiza informações da empresa azul
+                companyLogo.src = 'https://media.licdn.com/dms/image/v2/C4D0BAQGQ3hcetKC_MQ/company-logo_200_200/company-logo_200_200/0/1631355617759/tecpay_s_a_logo?e=2147483647&v=beta&t=-branYQ-w3IGhjRt6znEZcW15jGOSDI9zFzoMSzQsdg';
+                companyName.textContent = 'TechPay Financeiro';
+                companyCnpj.textContent = '38.456.789/0001-23';
+                companyEmail.textContent = 'contato@techpay.com.br';
+                companyPhone.textContent = '(21) 97654-3210';
+                companyAddress.textContent = 'Rua das Tecnologias, 500, Centro';
+                companyCity.textContent = 'CEP: 22000-000 - Rio de Janeiro - RJ';
+                
+                // Adiciona classe 'active' ao botão azul
+                document.querySelector('.theme-btn.blue').classList.add('active');
+                
+                // Atualiza itens da fatura para empresa azul
+                updateInvoiceItems('blue');
+                // Atualiza descrição
+                updateDescription('blue');
+                
+            } else if (theme === 'perto') {
+                // Adiciona a classe do tema perto
+                body.classList.add('theme-perto');
+                
+                // Atualiza informações da Perto Network
+                companyLogo.src = 'https://media.licdn.com/dms/image/v2/D4D0BAQGMAlxug45a2g/company-logo_200_200/company-logo_200_200/0/1690715576791/pertonetwork_logo?e=2147483647&v=beta&t=LFD-_z75f2XRbRo1wMrtBRg7F99SfAWLBuK2h5b1Xms';
+                companyName.textContent = 'Perto Network';
+                companyCnpj.textContent = '48.716.869/0001-63';
+                companyEmail.textContent = 'comercial@perto.network';
+                companyPhone.textContent = '(11) 4570-0444';
+                companyAddress.textContent = 'Av. Pres. Juscelino Kubitschek, 1327';
+                companyCity.textContent = 'CEP: 04543-011 - São Paulo - SP';
+                
+                // Adiciona classe 'active' ao botão perto
+                document.querySelector('.theme-btn.perto').classList.add('active');
+                
+                // Atualiza itens da fatura para Perto Network
+                updateInvoiceItems('perto');
+                // Atualiza descrição
+                updateDescription('perto');
+                
+            } else if (theme === 'netiz') {
+                // Adiciona a classe do tema netiz
+                body.classList.add('theme-netiz');
+                
+                // Atualiza informações da Netiz
+                companyLogo.src = 'https://app-buzzlead-img.s3.sa-east-1.amazonaws.com/637e0b2fb19df568bef67c98/thumbnail/b7f393adc5d7677410e0c63a4c75011c3ac3466b.png';
+                companyName.textContent = 'Netiz Internet';
+                companyCnpj.textContent = '18.816.273/0001-74';
+                companyEmail.textContent = 'suporte@netiz.com.br';
+                companyPhone.textContent = '(79) 3024-0007';
+                companyAddress.textContent = 'Av. São João Batista, 651 - Ponto Novo';
+                companyCity.textContent = 'CEP: 49097-000 - Aracaju - SE';
+                
+                // Adiciona classe 'active' ao botão netiz
+                document.querySelector('.theme-btn.netiz').classList.add('active');
+                
+                // Atualiza itens da fatura para Netiz
+                updateInvoiceItems('netiz');
+                // Atualiza descrição
+                updateDescription('netiz');
+                
+            } else {
+                // Mantém o tema verde padrão
+                companyLogo.src = 'https://ecoefin.com.br/assets/img/logo_bottom.png';
+                companyName.textContent = 'EcoFin Soluções';
+                companyCnpj.textContent = '45.987.632/0001-19';
+                companyEmail.textContent = 'financeiro@ecofin.com.br';
+                companyPhone.textContent = '(11) 98765-4321';
+                companyAddress.textContent = 'Av. Paulista, 1000, Bela Vista';
+                companyCity.textContent = 'CEP: 01310-100 - São Paulo - SP';
+                
+                // Adiciona classe 'active' ao botão verde
+                document.querySelector('.theme-btn.green').classList.add('active');
+                
+                // Atualiza itens da fatura para empresa verde
+                updateInvoiceItems('green');
+                // Atualiza descrição
+                updateDescription('green');
+            }
+            
+            // Resetar o estado do toggle da empresa
+            resetCompanyDetailsToggle();
+        }
+        
+        // Função para atualizar os itens da fatura baseado no tema
+        function updateInvoiceItems(theme) {
+            const invoiceItemsBody = document.getElementById('invoice-items-body');
+            const itemCard1 = document.getElementById('item-card-1');
+            const itemCard2 = document.getElementById('item-card-2');
+            
+            let items = [];
+            
+            if (theme === 'perto') {
+                // Itens da Perto Network
+                items = [
+                    {
+                        id: 1,
+                        description: 'Link Dedicado 100 Mbps',
+                        quantity: 1,
+                        value: 'R$ 1.299,90'
+                    },
+                    {
+                        id: 2,
+                        description: 'PABX Virtual - 10 ramais',
+                        quantity: 1,
+                        value: 'R$ 450,00'
+                    }
+                ];
+            } else if (theme === 'blue') {
+                // Itens da empresa azul
+                items = [
+                    {
+                        id: 1,
+                        description: 'Serviço de Análise Financeira',
+                        quantity: 1,
+                        value: 'R$ 399,90'
+                    },
+                    {
+                        id: 2,
+                        description: 'Consultoria Empresarial',
+                        quantity: 1,
+                        value: 'R$ 750,00'
+                    }
+                ];
+            } else if (theme === 'netiz') {
+                // Itens da Netiz
+                items = [
+                    {
+                        id: 1,
+                        description: 'Plano Fibra Óptica 500 Mbps',
+                        quantity: 1,
+                        value: 'R$ 159,90'
+                    },
+                    {
+                        id: 2,
+                        description: 'Sky+ TV com 88 canais',
+                        quantity: 1,
+                        value: 'R$ 99,90'
+                    }
+                ];
+            } else {
+                // Itens da empresa verde (padrão)
+                items = [
+                    {
+                        id: 1,
+                        description: 'Licença Premium Business',
+                        quantity: 1,
+                        value: 'R$ 199,90'
+                    },
+                    {
+                        id: 2,
+                        description: 'Suporte Técnico Avançado',
+                        quantity: 1,
+                        value: 'R$ 50,00'
+                    }
+                ];
+            }
+            
+            // Atualiza a tabela
+            invoiceItemsBody.innerHTML = items.map(item => `
+                <tr>
+                    <td class="item-column">${item.id}</td>
+                    <td class="description-column">${item.description}</td>
+                    <td class="quantity-column">${item.quantity}</td>
+                    <td class="value-column">${item.value}</td>
+                </tr>
+            `).join('');
+            
+            // Atualiza os cards para mobile
+            if (itemCard1 && itemCard2 && items.length >= 2) {
+                // Card 1
+                itemCard1.querySelector('.item-number').textContent = items[0].id;
+                itemCard1.querySelector('.item-value').textContent = items[0].value;
+                itemCard1.querySelector('.item-description').textContent = items[0].description;
+                itemCard1.querySelector('.item-quantity span').nextSibling.textContent = ' ' + items[0].quantity;
+                
+                // Card 2
+                itemCard2.querySelector('.item-number').textContent = items[1].id;
+                itemCard2.querySelector('.item-value').textContent = items[1].value;
+                itemCard2.querySelector('.item-description').textContent = items[1].description;
+                itemCard2.querySelector('.item-quantity span').nextSibling.textContent = ' ' + items[1].quantity;
+            }
+        }
+        
+        // Função para alternar entre abas de pagamento
+        function togglePaymentTab(tab) {
+            // Remove classe active de todas as abas
+            document.querySelectorAll('.payment-tab').forEach(paymentTab => {
+                paymentTab.classList.remove('active');
+            });
+            
+            // Remove classe active de todos os conteúdos
+            document.querySelectorAll('.payment-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Ativa a aba selecionada
+            if (tab === 'pix') {
+                document.querySelector('.payment-tab:first-child').classList.add('active');
+                document.getElementById('pix-content').classList.add('active');
+            } else {
+                document.querySelector('.payment-tab:nth-child(2)').classList.add('active');
+                document.getElementById('boleto-content').classList.add('active');
+            }
+        }
+        
+        // Função para copiar texto para a área de transferência
+        function copyToClipboard(elementId) {
+            // Seleciona o texto do elemento
+            const element = document.getElementById(elementId);
+            const text = element.innerText;
+            
+            // Cria um elemento temporário para copiar o texto
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'absolute';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            
+            // Seleciona e copia o texto
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Remove o elemento temporário
+            document.body.removeChild(textarea);
+            
+            // Mostra feedback visual
+            const button = event.currentTarget;
+            const tooltip = button.querySelector('.tooltip');
+            
+            // Adiciona classe para mudar cor do botão
+            button.classList.add('clicked');
+            
+            // Mostra o tooltip
+            tooltip.classList.add('tooltip-visible');
+            
+            // Remove classes após um tempo
+            setTimeout(function() {
+                tooltip.classList.remove('tooltip-visible');
+                button.classList.remove('clicked');
+            }, 2000);
+            
+            // Adiciona feedback tátil em dispositivos móveis se disponível
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+        
+        // Função para alternar o display dos detalhes da empresa
+        function toggleCompanyDetails() {
+            const details = document.getElementById('company-details');
+            const toggleIcon = document.querySelector('.toggle-icon');
+            const toggleText = document.querySelector('.toggle-text');
+            
+            if (details.classList.contains('expanded')) {
+                // Fechar os detalhes
+                details.classList.remove('expanded');
+                toggleIcon.classList.remove('rotate');
+                toggleText.textContent = 'Ver detalhes da empresa';
+            } else {
+                // Abrir os detalhes
+                details.classList.add('expanded');
+                toggleIcon.classList.add('rotate');
+                toggleText.textContent = 'Ocultar detalhes';
+            }
+        }
+        
+        // Função para resetar o estado do toggle da empresa
+        function resetCompanyDetailsToggle() {
+            const details = document.getElementById('company-details');
+            const toggleIcon = document.querySelector('.toggle-icon');
+            const toggleText = document.querySelector('.toggle-text');
+            
+            details.classList.remove('expanded');
+            toggleIcon.classList.remove('rotate');
+            toggleText.textContent = 'Ver detalhes da empresa';
+        }
+        
+        // Inicializa o estado
+        document.addEventListener('DOMContentLoaded', function() {
+            resetCompanyDetailsToggle();
+            
+            // Inicializa com o tema padrão (verde)
+            updateInvoiceItems('green');
+            updateDescription('green');
+        });
+    </script>
+</body>
+</html> 

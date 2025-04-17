@@ -1,0 +1,19 @@
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de desenvolvimento
+node_modules/
+.git/
+.idea/
+.vscode/
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Arquivos específicos
+README.md
+.gitignore
+.dockerignore
+Dockerfile 
